@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import View, TemplateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib import messages
 
 class HomeView(TemplateView):
     template_name ='home.html'
@@ -19,3 +20,8 @@ class RegistroView(View):
             usuario = form.save()
             login(request, usuario)
             return redirect('home')
+        else:
+            for msg in form.error_messages:
+                messages.error(request, form.error_messages[msg])
+            return render(request, 'registro.html', {'form':form})
+                    
