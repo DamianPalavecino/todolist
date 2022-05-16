@@ -8,5 +8,24 @@
 </head>
 <body>
     <h1>Página de inicio</h1>
+    <div class="container">
+        {% if user.is_authenticated %} 
+            <div>
+                <h2>Hola {{ user.username }}</h2>
+            </div>
+            <div>
+                <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+            </div>
+
+        {% else %} 
+            <div>                
+                <a href="{% url 'login' %}">Login</a>                 
+            </div>
+            <div>
+                <a href="{% url 'registro' %}">Registro</a>
+            </div>
+        {% endif %}
+
+    </div>
 </body>
 </html>
