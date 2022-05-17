@@ -2,6 +2,21 @@
 
 <form method="post">
   {% csrf_token %}
+
+  {% if messages %} 
+
+    {% for msg in messages %}   
+
+      <span style="color:red">
+
+        {{ msg }}
+
+      </span>
+
+    {% endfor %}
+
+  {% endif %}   
+
   {{ form.as_p }}
   <button type="submit">Enviar</button>
 </form>
