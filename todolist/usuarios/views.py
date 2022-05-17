@@ -35,14 +35,14 @@ def loginView(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             nombre_usuario = form.cleaned_data.get('username')
-            passw = form.cleaned_data.get('password')
+            passw = form.cleaned_data.get('password')       
             usuario = authenticate(username=nombre_usuario, password=passw)
             if usuario is not None:
                 login(request, usuario)
                 return redirect('home')
             else:
-                messages.error(request, 'El usuario no es válido!')    
+                messages.error(request, 'Los datos ingresados son incorrectos!')    
         else:
-            messages.error(request, 'El usuario no es válido!')    
+            messages.error(request, 'Los datos ingresados son incorrectos!')    
     form=AuthenticationForm
     return render(request, 'login.html', {'form':form})
