@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.fields import DateTimeField
+from django.contrib.auth.models import User
 
 class Estados(models.TextChoices):
     CREADA = 'Creada'
@@ -15,6 +16,8 @@ class Tarea(models.Model):
     estado = models.CharField(choices=Estados.choices, max_length=10)   
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now=True)  
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+
 
     class Meta:
 
